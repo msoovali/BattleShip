@@ -1,0 +1,57 @@
+@page
+@using Domain
+@model WebApp.Pages.CustomPlacement
+
+@{
+    ViewData["Title"] = "Custom ships";
+}
+
+<div class="text-center">
+    <h1>@Model.Player ! Place Your ships!</h1>
+    <h2>Current ship length: @Model.CurrentShip</h2>
+    <hr/>
+    @if (Model.Message != null)
+    {
+        <h3 style="color: red">@Model.Message</h3>
+        if (Model.Message.Contains("too small board"))
+        {
+            <p></p>
+            <a asp-page="Index">Okay... Take me back to main!</a>
+        }
+    }
+    <table class="table table-bordered">
+        @for (var i = 0; i < Model.Game.Rows; i++)
+        {
+            <tr>
+                @for (var j = 0; j < Model.Game.Cols; j++)
+                {
+                    <td>
+                        @switch (Model.Board[i][j])
+                        {
+                            case CellState.Empty:
+                                <a asp-page="CustomPlacement" asp-route-id="@Model.Game.GameId" asp-route-shipNo="@Model.ShipNo" asp-route-row="@i" asp-route-col="@j" asp-route-vert="1">|</a>
+                                <a asp-page="CustomPlacement" asp-route-id="@Model.Game.GameId" asp-route-shipNo="@Model.ShipNo" asp-route-row="@i" asp-route-col="@j" asp-route-vert="0">-</a>
+                                break;
+                            case CellState.Ship:
+                                <div>S</div>
+                                break;
+                            case CellState.Hit:
+                                <div>H</div>
+                                break;
+                            case CellState.Miss:
+                                <div>M</div>
+                                break;
+                            case CellState.Wreck:
+                                <div>W</div>
+                                break;
+                            default:
+                                throw new ArgumentOutOfRangeException();
+                        }
+                    </td>
+                }
+            </tr>
+        }
+
+    </table>
+    
+</div>

@@ -1,0 +1,102 @@
+@page "{id}"
+@using Domain
+@model WebApp.Pages.PlayGame
+
+@{
+    ViewData["Title"] = "Play!";
+}
+
+<h1>Make Your move, @Model.Me!</h1>
+<hr/>
+@if (Model.Message != null)
+{
+    <h3 style="color: red">@Model.Message</h3>
+    if (Model.Message.Contains("has won the game"))
+    {
+        <p></p>
+        <a asp-page="Index">Take me back to main!</a>
+    }
+}
+<div class="index_container">
+    <div class="row justify-content-around">
+        <div class="col-lg-1"></div>
+        <div class="col-lg-5">
+            <h2 style="color: teal">Your board</h2>
+        </div>
+        <div class="col-lg-5">
+            <h2 style="color: brown">@Model.Enemy 's board</h2>
+        </div>
+    </div>
+    <div class="row justify-content-around">
+        <table class="table table-bordered col-md-4">
+            @for (var i = 0; i < Model.Game.Rows; i++)
+            {
+                <tr>
+                    @for (var j = 0; j < Model.Game.Cols; j++)
+                    {
+                        <td>
+                            @switch (Model.MyBoard[i][j])
+                            {
+                                case CellState.Empty:
+                                    <div>~</div>
+                                    break;
+                                case CellState.Ship:
+                                    <div>S</div>
+                                    break;
+                                case CellState.Hit:
+                                    <div>H</div>
+                                    break;
+                                case CellState.Miss:
+                                    <div>M</div>
+                                    break;
+                                case CellState.Wreck:
+                                    <div>W</div>
+                                    break;
+                                default:
+                                    throw new ArgumentOutOfRangeException();
+                            }
+                        </td>
+                    }
+                </tr>
+            }
+        </table>
+
+        <table class="table table-bordered col-md-4">
+            @for (var i = 0; i < Model.Game.Rows; i++)
+            {
+                <tr>
+                    @for (var j = 0; j < Model.Game.Cols; j++)
+                    {
+                        <td>
+                            @switch (Model.EnemyBoard[i][j])
+                            {
+                                case CellState.Empty:
+                                    <a asp-page="PlayGame" asp-route-id="@Model.Game.GameId" asp-route-row="@i" asp-route-col="@j">~</a>
+                                    break;
+                                case CellState.Ship:
+                                    <a asp-page="PlayGame" asp-route-id="@Model.Game.GameId" asp-route-row="@i" asp-route-col="@j">~</a>
+                                    break;
+                                case CellState.Hit:
+                                    <a asp-page="PlayGame" asp-route-id="@Model.Game.GameId" asp-route-row="@i" asp-route-col="@j">H</a>
+                                    break;
+                                case CellState.Miss:
+                                    <a asp-page="PlayGame" asp-route-id="@Model.Game.GameId" asp-route-row="@i" asp-route-col="@j">M</a>
+                                    break;
+                                case CellState.Wreck:
+                                    <a asp-page="PlayGame" asp-route-id="@Model.Game.GameId" asp-route-row="@i" asp-route-col="@j">W</a>
+                                    break;
+                                default:
+                                    throw new ArgumentOutOfRangeException();
+                            }
+                        </td>
+                    }
+                </tr>
+            }
+        </table>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-md-3">
+            <a asp-page="Index">Back to main</a>
+        </div>
+    </div>
+</div>

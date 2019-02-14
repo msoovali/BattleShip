@@ -1,0 +1,78 @@
+@page
+@model WebApp.Pages_Games.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Game</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Game.GameId" />
+            <input type="hidden" asp-for="Game.GameShips" />
+            <input type="hidden" asp-for="Game.PlayerOneBoard" />
+            <input type="hidden" asp-for="Game.PlayerTwoBoard" />
+            <div class="form-group">
+                <label asp-for="Game.PlayerOne" class="control-label"></label>
+                <input asp-for="Game.PlayerOne" class="form-control" />
+                <span asp-validation-for="Game.PlayerOne" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Game.PlayerTwo" class="control-label"></label>
+                <input asp-for="Game.PlayerTwo" class="form-control" />
+                <span asp-validation-for="Game.PlayerTwo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Game.Rows" class="control-label"></label>
+                <input asp-for="Game.Rows" class="form-control" />
+                <span asp-validation-for="Game.Rows" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Game.Cols" class="control-label"></label>
+                <input asp-for="Game.Cols" class="form-control" />
+                <span asp-validation-for="Game.Cols" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Game.PlayerOneTurn" /> @Html.DisplayNameFor(model => model.Game.PlayerOneTurn)
+                </label>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Game.GameOver" /> @Html.DisplayNameFor(model => model.Game.GameOver)
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="Game.NumberOfShips" class="control-label"></label>
+                <input asp-for="Game.NumberOfShips" class="form-control" />
+                <span asp-validation-for="Game.NumberOfShips" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Game.Ai" /> @Html.DisplayNameFor(model => model.Game.Ai)
+                </label>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Game.ShipsCanTouch" /> @Html.DisplayNameFor(model => model.Game.ShipsCanTouch)
+                </label>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

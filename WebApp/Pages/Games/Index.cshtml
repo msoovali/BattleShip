@@ -1,0 +1,102 @@
+@page
+@model WebApp.Pages_Games.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Game[0].PlayerOne)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Game[0].PlayerTwo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Game[0].PlayerOneBoard)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Game[0].PlayerTwoBoard)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Game[0].GameShips)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Game[0].Rows)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Game[0].Cols)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Game[0].PlayerOneTurn)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Game[0].GameOver)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Game[0].NumberOfShips)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Game[0].Ai)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Game[0].ShipsCanTouch)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Game) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.PlayerOne)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PlayerTwo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PlayerOneBoard)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PlayerTwoBoard)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GameShips)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Rows)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cols)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PlayerOneTurn)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GameOver)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumberOfShips)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ai)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ShipsCanTouch)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.GameId">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.GameId">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.GameId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

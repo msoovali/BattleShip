@@ -1,0 +1,23 @@
+@page
+@model WebApp.Pages.ShipPlacement
+
+@{
+    ViewData["Title"] = "Placement";
+}
+
+<div class="text-center">
+    @if (Model.Message != null)
+    {
+        <h3 style="color: red">@Model.Message</h3>
+        if (Model.Message.Contains("small board"))
+        {
+            <p></p>
+            <a asp-page="Index">Okay... Take me back to main!</a>
+        }
+    }
+    <h1>How would You like to place Your ships?</h1>
+    <hr/>
+    <a asp-page="ShipPlacement" asp-route-id="@Model.Game.GameId" asp-route-choice="1">Randomly</a>
+    <p></p>
+    <a asp-page="CustomPlacement" asp-route-id="@Model.Game.GameId">Let me place my ships</a>
+</div>

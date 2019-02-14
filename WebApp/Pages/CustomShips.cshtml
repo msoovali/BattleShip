@@ -1,0 +1,24 @@
+@page "{id}"
+@model WebApp.Pages.CustomShips
+
+@{
+    ViewData["Title"] = "Custom ships";
+}
+<form method="post">
+    <div class="form-group">
+        <input asp-for="GameId" type="hidden"/>
+        </div>
+    @for (var i = 0; i < Model.ShipLengths.Count; i++)
+    {
+        <div class="form-group">
+            <label class="control-label">Ship @(i + 1) length</label>
+            <input asp-for="@Model.ShipLengths[i]" class="form-control" value="3" min="1" max="20"/>
+            <span asp-validation-for="@Model.ShipLengths[i]" class="text-danger"></span>
+        </div>
+    }
+    <div class="form-group">
+        <div class="col-sm-10">
+            <button type="submit" class="btn">Submit</button>
+        </div>
+    </div>
+</form>

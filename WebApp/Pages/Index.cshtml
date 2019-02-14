@@ -1,0 +1,71 @@
+@page
+@model WebApp.Pages.NewGame
+
+@{
+    ViewData["Title"] = "Setup";
+}
+<div class="text-center">
+    <h1>Game setup</h1>
+    <hr/>
+    <form method="post">
+        <div class="index_container">
+            <div class="row justify-content-around">
+                <div class="form-group col-md-4">
+                    <label asp-for="Game.PlayerOne">Player 1 name</label>
+                    <input asp-for="Game.PlayerOne" class="form-control" placeholder="Enter name"/>
+                    <span asp-validation-for="Game.PlayerOne"></span>
+                </div>
+                <div class="form-group col-md-4">
+                    <label asp-for="Game.PlayerTwo" class="control-label">Player 2 name</label>
+                    <input asp-for="Game.PlayerTwo" class="form-control" id="PlayerTwo" placeholder="Enter name"/>
+                    <span asp-validation-for="Game.PlayerTwo" class="text-danger"></span>
+                </div>
+                <div class="form-group form-check col-md-3" id="checkbox-padding">
+                    <label class="form-check-label">
+                        <input class="form-check-input" asp-for="Game.Ai" id="AICheckbox"/> Play against AI
+                    </label>
+                </div>
+            </div>
+            <div class="row justify-content-around">
+                <div class="form-group col-md-4">
+                    <label asp-for="Game.Rows" class="control-label">Board rows</label>
+                    <input asp-for="Game.Rows" class="form-control" value="10" min="2" max="50"/>
+                    <span asp-validation-for="Game.Rows" class="text-danger"></span>
+                </div>
+                <div class="form-group col-md-4">
+                    <label asp-for="Game.Cols" class="control-label">Board columns</label>
+                    <input asp-for="Game.Cols" class="form-control" value="10" min="2" max="50"/>
+                    <span asp-validation-for="Game.Cols" class="text-danger"></span>
+                </div>
+                <div class="form-group form-check col-md-3" id="checkbox-padding">
+                    <label class="form-check-label">
+                        <input class="form-check-input" asp-for="Game.ShipsCanTouch"/> Ships can touch
+                    </label>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="form-group form-check col-md-3" id="checkbox-padding">
+                    <label class="form-check-label">
+                        <input class="form-check-input" id="custom-ships" asp-for="@Model.StandardShips"/> Use standard ships
+                    </label>
+                </div>
+                <div class="form-group col-md-4">
+                    <label asp-for="Game.NumberOfShips" class="control-label">Number of ships</label>
+                    <input asp-for="Game.NumberOfShips" class="form-control" id="no-of-ships" value="5" min="1" max="15"/>
+                    <span asp-validation-for="Game.NumberOfShips" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Next" class="btn btn-primary"/>
+        </div>
+    </form>
+    or
+    <div>
+        <a asp-page="LoadGame">Load a previous game</a>
+    </div>
+</div>
+
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}
