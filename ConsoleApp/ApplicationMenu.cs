@@ -135,7 +135,7 @@ namespace ConsoleApp
             Console.Clear();
             var optionsBuilder = new DbContextOptionsBuilder();
             optionsBuilder.UseMySQL(
-                "server=alpha.akaver.com;database=student2018_masoov;user=student2018;password=student2018");
+                "server=localhost;database=battleship;user=root;password=toor");
             var ctx = new AppDbContext(optionsBuilder.Options);
             int gameId;
             do
@@ -168,7 +168,7 @@ namespace ConsoleApp
             ShipPlacement.RandomPlacement(MyGame, false);
             var optionsBuilder = new DbContextOptionsBuilder();
             optionsBuilder.UseMySQL(
-                "server=alpha.akaver.com;database=student2018_masoov;user=student2018;password=student2018");
+                "server=localhost;database=battleship;user=root;password=toor");
             Ctx = new AppDbContext(optionsBuilder.Options);
             Ctx.Add(MyGame);
             ActionMenu.BombingMenu(MyGame, Ctx);
@@ -206,7 +206,7 @@ namespace ConsoleApp
             }
             var optionsBuilder = new DbContextOptionsBuilder();
             optionsBuilder.UseMySQL(
-                "server=alpha.akaver.com;database=student2018_masoov;user=student2018;password=student2018");
+                "server=localhost;database=battleship;user=root;password=toor");
             Ctx = new AppDbContext(optionsBuilder.Options);
             Ctx.Add(MyGame);
             ActionMenu.BombingMenu(MyGame, Ctx);
