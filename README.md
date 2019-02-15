@@ -12,4 +12,4 @@ Battleship console/asp-net game in dotnet framework
 
 **Some photos of game**
 
-[!alt text](https://i.imgur.com/p22hUCz.jpg)
+![alt text](https://i.imgur.com/p22hUCz.jpg)
