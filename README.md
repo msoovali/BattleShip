@@ -20,5 +20,5 @@ Battleship console/asp-net game in dotnet framework
 ## LOAD SCREEN
 ![alt text](https://i.imgur.com/hrvpuaa.jpg)
 
-## COMMAND LINE GAMEPLAY
+## COMMANDLINE GAMEPLAY
 ![alt text](https://i.imgur.com/mWQ9g9n.jpg)
